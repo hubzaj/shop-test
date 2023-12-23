@@ -7,6 +7,7 @@ public class AlbumControllerTest extends BaseTest {
 
     @Test
     void createNewAlbumTest() {
+        System.out.println("asda");
     }
 
 }
