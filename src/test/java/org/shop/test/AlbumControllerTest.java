@@ -24,7 +24,11 @@ public class AlbumControllerTest extends BaseTest {
                 .log()
                 .ifValidationFails(LogDetail.BODY)
                 .statusCode(200)
-                .body(equalTo("\"Hi! I am alive!\""));
+                .body(equalTo(extendWithQuotes("Hi! I am alive!")));
+    }
+
+    private static String extendWithQuotes(String body) {
+        return String.format("\"%s\"", body);
     }
 
 }
