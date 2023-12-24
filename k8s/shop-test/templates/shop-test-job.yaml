@@ -1,0 +1,13 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.name }}
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ .Values.image.name }}:{{ required "image.version is required" .Values.image.version }}
+          command: [ "-P{{ .Values.test.group }}" ]
+      restartPolicy: Never

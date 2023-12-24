@@ -1,0 +1,10 @@
+environment: qa
+
+name: shop-test
+
+test:
+  group: "TEST_TAG"
+
+image:
+  name: shop
+  version: latest

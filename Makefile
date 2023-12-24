@@ -12,3 +12,10 @@ run-smoke-integration-tests:
 
 build-docker-image:
 	@docker build -t ${LATEST} .
+
+create-manifest-dir:
+	[ -d "manifest" ] || mkdir -p "manifest"
+
+bake-integration-test-job-manifest:
+	@make create-manifest-dir
+	@helm template shop-test ./k8s/shop-test -f ./k8s/shop-test/values-integration.yaml>> manifest/shop-test.yml
