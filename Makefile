@@ -8,7 +8,7 @@ run-integration-tests:
 	@mvn test
 
 run-smoke-integration-tests:
-	@mvn test -PsmokeTest
+	@mvn test -PintegrationTest -PsmokeTest
 
 build-docker-image:
 	@docker build -t ${LATEST} .
