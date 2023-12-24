@@ -9,4 +9,4 @@ COPY pom.xml ./
 COPY src ./src
 RUN mvn clean package -DskipTests
 
-CMD ["mvn", "test"]
+ENTRYPOINT ["mvn", "test"]
