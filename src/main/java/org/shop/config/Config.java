@@ -5,12 +5,15 @@ import lombok.Getter;
 @Getter
 public class Config {
 
+    private static final String SHOP_ON_DEMAND_SUFFIX_ENV = "SHOP_ON_DEMAND_SUFFIX";
+
     private static final String SHOP_HOST_ENV = "SHOP_HOST";
     private static final String SHOP_PORT_ENV = "SHOP_PORT";
     private static final String SHOP_BASE_API_URL_ENV = "SHOP_BASE_API_URL";
 
     private static Config config;
 
+    private String shopOnDemandSuffix = "";
     private String shopHost = "http://localhost";
     private int shopPort = 9000;
     private String shopBaseApiUrl = "/api/v1/shop";
@@ -18,6 +21,7 @@ public class Config {
     private String os;
 
     private Config() {
+        loadOnDemandSuffix();
         loadShopBaseApiUrl();
         loadShopPort();
         loadShopHost();
@@ -29,6 +33,11 @@ public class Config {
             config = new Config();
         }
         return config;
+    }
+
+    private void loadOnDemandSuffix() {
+        String onDemandSuffix = System.getenv(SHOP_ON_DEMAND_SUFFIX_ENV);
+        shopOnDemandSuffix = onDemandSuffix != null ? onDemandSuffix : shopOnDemandSuffix;
     }
 
     private void loadShopBaseApiUrl() {
@@ -43,7 +52,9 @@ public class Config {
 
     private void loadShopHost() {
         String url = System.getenv(SHOP_HOST_ENV);
-        shopHost = url != null ? url + shopBaseApiUrl : shopHost + shopBaseApiUrl;
+        shopHost = url != null
+                ? url + shopBaseApiUrl + shopOnDemandSuffix
+                : shopHost + shopOnDemandSuffix + shopBaseApiUrl;
     }
 
     private void loadOsName() {

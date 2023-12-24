@@ -10,4 +10,13 @@ spec:
         - name: {{ .Values.name }}
           image: {{ .Values.image.name }}:{{ required "image.version is required" .Values.image.version }}
           command: [ "-P{{ .Values.test.group }}" ]
+          env:
+            - name: SHOP_ON_DEMAND_SUFFIX
+              value: {{ .Values.onDemandSuffix }}
+            - name: SHOP_HOST
+              value: {{ .Values.shop.server.host }}
+            - name: SHOP_PORT
+              value: {{ .Values.shop.server.port }}
+            - name: SHOP_BASE_API_URL
+              value: {{ .Values.shop.server.baseApiUrl }}
       restartPolicy: Never
