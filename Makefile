@@ -5,7 +5,7 @@ build:
 	@mvn clean package -DskipTests
 
 run-integration-tests:
-	@mvn test
+	@mvn test -PintegrationTest
 
 run-smoke-integration-tests:
 	@mvn test -PintegrationTest -PsmokeTest

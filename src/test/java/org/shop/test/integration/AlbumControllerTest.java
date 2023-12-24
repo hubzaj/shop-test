@@ -1,4 +1,4 @@
-package org.shop.test;
+package org.shop.test.integration;
 
 import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
@@ -7,13 +7,14 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-import org.shop.BaseTest;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.shop.test.Tag.INTEGRATION_TEST;
+import static org.shop.test.Tag.SMOKE_TEST;
 
 @Tags({
-        @Tag("IntegrationTest"),
-        @Tag("SmokeTest"),
+        @Tag(INTEGRATION_TEST),
+        @Tag(SMOKE_TEST),
 })
 public class AlbumControllerTest extends BaseTest {
 

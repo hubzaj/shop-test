@@ -1,4 +1,4 @@
-package org.shop;
+package org.shop.test.integration;
 
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.extension.ExtendWith;
