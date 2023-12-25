@@ -5,13 +5,13 @@ name: shop-test
 
 shop:
   server:
-    host: shop-service
-    port: 9000
+    host: shop
+    port: 80
     baseApiUrl: /api/v1/shop
 
 test:
   group: "TEST_TAG"
 
 image:
-  name: shop
+  name: shop-test
   version: latest
