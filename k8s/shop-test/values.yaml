@@ -1,0 +1,17 @@
+environment: qa
+onDemandSuffix:
+
+name: shop-test
+
+shop:
+  server:
+    host: "http://shop-service"
+    port: 80
+    baseApiUrl: /api/v1/shop
+
+test:
+  group: "TEST_TAG"
+
+image:
+  name: shop-test
+  version: latest

@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.name }}
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+        - name: {{ .Values.name }}
+          image: {{ .Values.image.name }}:{{ required "image.version is required" .Values.image.version }}
+          imagePullPolicy: IfNotPresent
+          env:
+            {{- if .Values.onDemandSuffix }}
+            - name: SHOP_ON_DEMAND_SUFFIX
+              value: {{ .Values.onDemandSuffix }}
+            {{ end }}
+            - name: SHOP_HOST
+              value: {{ .Values.shop.server.host }}
+            - name: SHOP_PORT
+              value: "{{ .Values.shop.server.port }}"
+            - name: SHOP_BASE_API_URL
+              value: {{ .Values.shop.server.baseApiUrl }}
+      restartPolicy: Never

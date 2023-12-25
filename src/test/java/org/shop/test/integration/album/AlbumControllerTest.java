@@ -1,4 +1,4 @@
-package org.shop.test.integration;
+package org.shop.test.integration.album;
 
 import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
@@ -7,6 +7,7 @@ import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
+import org.shop.test.integration.BaseTest;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.shop.test.Tag.INTEGRATION_TEST;
@@ -31,11 +32,7 @@ public class AlbumControllerTest extends BaseTest {
                 .log()
                 .ifValidationFails(LogDetail.BODY)
                 .statusCode(200)
-                .body(equalTo(extendWithQuotes("Hi! I am alive!")));
-    }
-
-    private static String extendWithQuotes(String body) {
-        return String.format("\"%s\"", body);
+                .body(equalTo("Hi! I am alive!"));
     }
 
 }
