@@ -10,7 +10,6 @@ spec:
         - name: {{ .Values.name }}
           image: {{ .Values.image.name }}:{{ required "image.version is required" .Values.image.version }}
           imagePullPolicy: IfNotPresent
-          command: [ "-P{{ .Values.test.group }}" ]
           env:
             {{- if .Values.onDemandSuffix }}
             - name: SHOP_ON_DEMAND_SUFFIX

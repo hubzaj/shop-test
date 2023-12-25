@@ -5,7 +5,7 @@ name: shop-test
 
 shop:
   server:
-    host: shop
+    host: "http://shop-service"
     port: 80
     baseApiUrl: /api/v1/shop
 
