@@ -23,13 +23,13 @@ jobs:
 
       - uses: actions/setup-java@v4
         with:
-          java-version: "${{ env.JAVA_VERSION }}"
-          distribution: "temurin"
+          java-version: 17
+          distribution: 'temurin'
       - run: java --version
 
       - uses: s4u/setup-maven-action@v1.11.0
         with:
-          java-version: "${{ env.JAVA_VERSION }}"
+          java-version: 17
           maven-version: "${{ env.MAVEN_VERSION }}"
       - run: mvn --version
 
