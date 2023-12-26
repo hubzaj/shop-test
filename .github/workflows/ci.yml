@@ -21,14 +21,12 @@ jobs:
         uses: endorama/asdf-parse-tool-versions@v1
         id: versions
 
-      - name: Setup Java
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: "${{ env.JAVA_VERSION }}"
       - run: java --version
 
-      - name: Setup Maven
-        uses: s4u/setup-maven-action@v1.11.0
+      - uses: s4u/setup-maven-action@v1.11.0
         with:
           java-version: "${{ env.JAVA_VERSION }}"
           maven-version: "${{ env.MVN_VERSION }}"
