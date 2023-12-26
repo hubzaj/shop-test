@@ -9,6 +9,11 @@ spec:
       containers:
         - name: {{ .Values.name }}
           image: {{ .Values.image.name }}:{{ required "image.version is required" .Values.image.version }}
+          args:
+            - -Dtest={{ .Values.test.pkg }}
+          {{- if .Values.test.tag }}
+            - -P{{ .Values.test.tag }}
+          {{ end }}
           imagePullPolicy: IfNotPresent
           env:
             {{- if .Values.onDemandSuffix }}
