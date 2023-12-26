@@ -1,0 +1,38 @@
+name: CI - basic verification
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Gather runtime environment versions - asdf
+        uses: endorama/asdf-parse-tool-versions@v1
+        id: versions
+
+      - uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'temurin'
+      - run: java --version
+
+      - uses: s4u/setup-maven-action@v1.11.0
+        with:
+          java-version: 17
+          maven-version: "${{ env.MAVEN_VERSION }}"
+      - run: mvn --version
+
+      - name: Build
+        run: |
+          mvn clean package -DskipTests
