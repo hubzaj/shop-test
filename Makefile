@@ -5,10 +5,10 @@ build:
 	@mvn clean package -DskipTests
 
 run-integration-tests:
-	@mvn test -PintegrationTest
+	@mvn test -Dtest=org.shop.test.integration.**
 
 run-smoke-integration-tests:
-	@mvn test -PintegrationTest -PsmokeTest
+	@mvn test -Dtest=org.shop.test.integration.** -Dgroups=SmokeTest
 
 build-docker-image:
 	@docker build -t ${LATEST} .

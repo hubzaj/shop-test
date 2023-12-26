@@ -58,11 +58,14 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.3</version>
                 <configuration>
-                    <groups>SmokeTest</groups>
-                    <groups>IntegrationTest</groups>
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
+                    <properties>
+                        <configurationParameters>
+                            junit.jupiter.tags=SmokeTest
+                        </configurationParameters>
+                    </properties>
                 </configuration>
             </plugin>
         </plugins>

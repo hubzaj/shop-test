@@ -1,3 +1,3 @@
 test:
-  tag: "integrationTest"
-  pkg: org/shop/test/integration/*
+  tag:
+  pkg: org.shop.test.integration.**

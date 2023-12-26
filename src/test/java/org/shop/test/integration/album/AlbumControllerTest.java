@@ -10,11 +10,9 @@ import org.junit.jupiter.api.Test;
 import org.shop.test.integration.BaseTest;
 
 import static org.hamcrest.Matchers.equalTo;
-import static org.shop.test.Tag.INTEGRATION_TEST;
 import static org.shop.test.Tag.SMOKE_TEST;
 
 @Tags({
-        @Tag(INTEGRATION_TEST),
         @Tag(SMOKE_TEST),
 })
 public class AlbumControllerTest extends BaseTest {
