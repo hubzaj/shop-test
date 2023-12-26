@@ -10,7 +10,8 @@ shop:
     baseApiUrl: /api/v1/shop
 
 test:
-  group: "TEST_TAG"
+  tag: "TEST_TAG"
+  pkg: "TEST_PACKAGE"
 
 image:
   name: shop-test
