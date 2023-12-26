@@ -10,8 +10,8 @@ shop:
     baseApiUrl: /api/v1/shop
 
 test:
-  tag: "TEST_TAG"
-  pkg: "TEST_PACKAGE"
+  tag: TEST_TAG
+  pkg: org.shop.test.**
 
 image:
   name: shop-test
