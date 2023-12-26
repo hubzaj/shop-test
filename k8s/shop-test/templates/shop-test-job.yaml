@@ -10,8 +10,8 @@ spec:
         - name: {{ .Values.name }}
           image: {{ .Values.image.name }}:{{ required "image.version is required" .Values.image.version }}
           args:
-            - -P{{ .Values.test.tag }}
             - -Dtest={{ .Values.test.pkg }}
+            - -P{{ .Values.test.tag }}
           imagePullPolicy: IfNotPresent
           env:
             {{- if .Values.onDemandSuffix }}
