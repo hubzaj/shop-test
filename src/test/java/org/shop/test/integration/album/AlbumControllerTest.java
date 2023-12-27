@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.shop.model.Album;
 import org.shop.test.integration.BaseTest;
 
+import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.http.ContentType.JSON;
 import static org.shop.Endpoint.CREATE_ALBUM;
 import static org.shop.Endpoint.GET_ALBUMS;
@@ -42,7 +43,7 @@ public class AlbumControllerTest extends BaseTest {
         // Then
         response.then()
                 .log()
-                .body()
+                .ifValidationFails(BODY)
                 .statusCode(201)
                 .body("id", Matchers.notNullValue())
                 .body("title", Matchers.equalTo(album.getTitle()))
@@ -63,7 +64,7 @@ public class AlbumControllerTest extends BaseTest {
         // Then
         response.then()
                 .log()
-                .body()
+                .ifValidationFails(BODY)
                 .statusCode(200)
                 .body("id", Matchers.hasItem(album.getId()))
                 .body("title", Matchers.hasItem(album.getTitle()))
