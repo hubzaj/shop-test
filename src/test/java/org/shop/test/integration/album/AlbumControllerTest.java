@@ -66,7 +66,7 @@ public class AlbumControllerTest extends BaseTest {
                 .log()
                 .ifValidationFails(BODY)
                 .statusCode(200)
-                .body("id", Matchers.hasItem(album.getId()))
+                .body("id", Matchers.hasItem(album.getId().toString()))
                 .body("title", Matchers.hasItem(album.getTitle()))
                 .body("artist", Matchers.hasItem(album.getArtist()))
                 .body("price", Matchers.hasItem(album.getPrice()));
