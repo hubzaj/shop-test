@@ -1,17 +1,18 @@
 package org.shop.model;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import java.util.UUID;
 
+@Setter
+@Getter
+@ToString
 @Builder
-@JsonSerialize
-@JsonDeserialize
 public class Album {
-//    UUID id;
+    UUID id;
     String title;
     String artist;
     float price;
