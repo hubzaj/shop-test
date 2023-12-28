@@ -30,7 +30,7 @@ deploy-shop-test-job:
 	@kubectl apply -f manifest/${IMG}-${OWNER}.yml
 
 display-test-result:
-	@kubectl logs -l job-name=${IMG}-${OWNER}  --tail=100
+	@kubectl logs -l job-name=${IMG}-${OWNER}  --tail=1000
 
 teardown-shop-test-job:
 	@rm -rf manifest
