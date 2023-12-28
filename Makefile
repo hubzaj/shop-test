@@ -1,6 +1,8 @@
 IMG    := shop-test
 LATEST := ${IMG}:latest
 
+OWNER := OVERRIDE-WITH-ENV-OWNER-SUFFIX
+
 build:
 	@mvn clean package -DskipTests
 
@@ -21,12 +23,15 @@ create-manifest-dir:
 
 bake-integration-test-job-manifest:
 	@make create-manifest-dir
-	@helm template shop-test ./k8s/shop-test -f ./k8s/shop-test/values-integration.yaml>> manifest/shop-test.yml
+	@helm template ${IMG} ./k8s/${IMG} -f ./k8s/${IMG}/values-integration.yaml --set name=${IMG}-${OWNER},onDemandSuffix=${OWNER} >> manifest/${IMG}-${OWNER}.yml
 
 deploy-shop-test-job:
 	@make bake-integration-test-job-manifest
-	@kubectl apply -f manifest/shop-test.yml
+	@kubectl apply -f manifest/${IMG}-${OWNER}.yml
+
+display-test-result:
+	@kubectl logs -l job-name=${IMG}-${OWNER}  --tail=1000
 
 teardown-shop-test-job:
 	@rm -rf manifest
-	@kubectl delete job shop-test
+	@kubectl delete job ${IMG}-${OWNER}

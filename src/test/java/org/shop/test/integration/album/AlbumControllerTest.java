@@ -1,6 +1,5 @@
 package org.shop.test.integration.album;
 
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers;
@@ -24,10 +23,8 @@ import static org.shop.utils.TestDataGenerator.generateRandomFloat;
 public class AlbumControllerTest extends BaseTest {
 
     @Test
-    void createNewAlbumTest() {
+    void createNewAlbumTest(RequestSpecification httpRequest) {
         // Given
-        RequestSpecification httpRequest = RestAssured.given();
-
         Album album = Album.builder()
                 .title(generateRandomAlphabeticString())
                 .artist(generateRandomAlphabeticString())
@@ -52,11 +49,9 @@ public class AlbumControllerTest extends BaseTest {
     }
 
     @Test
-    void getAlbumsTest() {
+    void getAlbumsTest(RequestSpecification httpRequest) {
         // Given
-        RequestSpecification httpRequest = RestAssured.given();
-
-        Album album = createNewAlbum();
+        Album album = createNewAlbum(httpRequest);
 
         // When
         Response response = httpRequest.get(GET_ALBUMS);
@@ -72,9 +67,7 @@ public class AlbumControllerTest extends BaseTest {
                 .body("price", Matchers.hasItem(album.getPrice()));
     }
 
-    private static Album createNewAlbum() {
-        RequestSpecification httpRequest = RestAssured.given();
-
+    private static Album createNewAlbum(RequestSpecification httpRequest) {
         Response response = httpRequest
                 .contentType(JSON)
                 .body(

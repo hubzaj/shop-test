@@ -2,6 +2,8 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: {{ .Values.name }}
+  labels:
+    app: {{ .Values.name }}
 spec:
   ttlSecondsAfterFinished: 100
   template:
@@ -19,7 +21,7 @@ spec:
             {{- if .Values.onDemandSuffix }}
             - name: SHOP_ON_DEMAND_SUFFIX
               value: {{ .Values.onDemandSuffix }}
-            {{ end }}
+            {{- end }}
             - name: SHOP_HOST
               value: {{ .Values.shop.server.host }}
             - name: SHOP_PORT

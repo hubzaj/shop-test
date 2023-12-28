@@ -5,7 +5,7 @@ name: shop-test
 
 shop:
   server:
-    host: "http://shop-service"
+    host: "http://env-router"
     port: 80
     baseApiUrl: /api/v1/shop
 

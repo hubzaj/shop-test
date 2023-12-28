@@ -52,9 +52,7 @@ public class Config {
 
     private void loadShopHost() {
         String url = System.getenv(SHOP_HOST_ENV);
-        shopHost = url != null
-                ? url + shopBaseApiUrl + shopOnDemandSuffix
-                : shopHost + shopOnDemandSuffix + shopBaseApiUrl;
+        shopHost = url != null ? url : shopHost;
     }
 
     private void loadOsName() {

@@ -19,10 +19,8 @@ import static org.shop.test.Tag.SMOKE_TEST;
 public class HealthControllerTest extends BaseTest {
 
     @Test
-    void healthTest() {
+    void healthTest(RequestSpecification httpRequest) {
         // Given
-        RequestSpecification httpRequest = RestAssured.given();
-
         // When
         Response response = httpRequest.get(HEALTH);
 
