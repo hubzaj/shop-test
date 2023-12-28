@@ -1,7 +1,7 @@
 IMG    := shop-test
 LATEST := ${IMG}:latest
 
-OWNER := hubzaj
+OWNER := OVERRIDE-WITH-ENV-OWNER-SUFFIX
 
 build:
 	@mvn clean package -DskipTests
