@@ -1,4 +1,4 @@
-# Shop Server
+# Shop Test
 
 [<img src="https://img.shields.io/badge/development-shop_service-purple">](https://github.com/hubzaj/shop-server)
 [<img src="https://img.shields.io/badge/development-how_to_start-blue">](https://github.com/hubzaj/shop-test/tree/main#working-with-terminal)
