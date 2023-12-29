@@ -1,7 +1,4 @@
-FROM eclipse-temurin:17-jdk-jammy
-
-RUN apt-get update
-RUN apt-get install -y maven
+FROM maven:3.8.8-eclipse-temurin-21
 
 WORKDIR /app
 
