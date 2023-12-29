@@ -15,8 +15,8 @@ run-smoke-integration-tests:
 build-docker-image:
 	@docker build -t ${LATEST} .
 
-run-test-in-docker:
-	@docker run ${LATEST}
+run-integration-tests-in-docker:
+	@docker run ${LATEST} -Dtest=org.shop.test.integration.**
 
 create-manifest-dir:
 	[ -d "manifest" ] || mkdir -p "manifest"
