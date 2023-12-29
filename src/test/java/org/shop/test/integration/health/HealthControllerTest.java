@@ -1,6 +1,5 @@
 package org.shop.test.integration.health;
 
-import io.restassured.RestAssured;
 import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
