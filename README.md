@@ -7,10 +7,10 @@
 ## Background
 
 The objective of this project was to develop a testing framework for the [shop-server](https://github.com/hubzaj/shop-server) application.
-- The test framework was built using [JUnit 5](https://junit.org/junit5/) and [REST Assured](https://rest-assured.io/)
-- By default, all tests, both suites and cases, are [configured](https://github.com/hubzaj/shop-test/blob/main/src/test/resources/junit-platform.properties) to run in parallel
-- The tests are containerized using Docker, and they can be executed within a Kubernetes cluster as a job, thanks to the Helm Chart configuration
-- Additionally, the tests can be conducted against various deployments of the shop-service, facilitated by the nginx env-router and the suffixed deployment option
+- The test framework was built using [JUnit 5](https://junit.org/junit5/) and [REST Assured](https://rest-assured.io/).
+- By default, all tests, both suites and cases, are [configured](https://github.com/hubzaj/shop-test/blob/main/src/test/resources/junit-platform.properties) to run in parallel.
+- The tests are containerized using Docker, and they can be executed within a Kubernetes cluster as a job, thanks to the Helm Chart configuration.
+- Additionally, the tests can be conducted against various deployments of the shop-service, facilitated by the nginx env-router and the suffixed deployment option.
 
 ## Architecture
 
