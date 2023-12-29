@@ -15,7 +15,8 @@ The objective of this project was to develop a testing framework for the [shop-s
 ## Architecture
 
 ###### Test infrastructure
-![img.png](docs/architecture/test-infrastructure.png)
+
+![test-infrastructure.png](docs/architecture/test-infrastructure.png)
 
 ## How to build project
 
