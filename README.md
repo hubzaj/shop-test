@@ -21,7 +21,7 @@ The objective of this project was to develop a testing framework for the [shop-s
 
 Requirements:
 
--     java 17
+-     java 21
 -     Maven 3
 
 ### Working with terminal
