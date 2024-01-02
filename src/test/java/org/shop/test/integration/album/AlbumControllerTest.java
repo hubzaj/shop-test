@@ -1,9 +1,5 @@
 package org.shop.test.integration.album;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.protobuf.InvalidProtocolBufferException;
-import com.google.protobuf.util.JsonFormat;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import lombok.SneakyThrows;
@@ -13,10 +9,6 @@ import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 import org.shop.model.Shop;
 import org.shop.test.integration.BaseTest;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.http.ContentType.JSON;
@@ -68,22 +60,6 @@ public class AlbumControllerTest extends BaseTest {
 
         // When
         Response response = httpRequest.get(GET_ALBUMS);
-
-        JsonFormat.Parser parser = JsonFormat.parser().ignoringUnknownFields();
-        String responseBody = response.asString();
-        JsonNode jsonNode = new ObjectMapper().readTree(responseBody);
-        final List<Shop.Album> albums = new ArrayList<>();
-        Iterator<JsonNode> elements = jsonNode.elements();
-        while (elements.hasNext()) {
-            try {
-                JsonNode element = elements.next();
-                Shop.Album.Builder albumBuilder = Shop.Album.newBuilder();
-                parser.merge(element.toString(), albumBuilder);
-                albums.add(albumBuilder.build());
-            } catch (InvalidProtocolBufferException e) {
-                throw new RuntimeException(e);
-            }
-        }
 
         // Then
         response.then()

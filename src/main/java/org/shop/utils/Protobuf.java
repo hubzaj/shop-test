@@ -23,5 +23,4 @@ public class Protobuf {
         return JsonFormat.printer().print(body);
     }
 
-
 }
