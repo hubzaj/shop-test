@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package protobuf;
+
+option java_package = "org.shop.model";
+option java_outer_classname = "Shop";
+
+
+message Album {
+  string id = 1;
+  string title = 2;
+  string artist = 3;
+  float price = 4;
+}

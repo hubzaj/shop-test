@@ -2,11 +2,12 @@ package org.shop.test.integration.album;
 
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import lombok.SneakyThrows;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
-import org.shop.model.Album;
+import org.shop.model.Shop;
 import org.shop.test.integration.BaseTest;
 
 import static io.restassured.filter.log.LogDetail.BODY;
@@ -14,6 +15,8 @@ import static io.restassured.http.ContentType.JSON;
 import static org.shop.Endpoint.CREATE_ALBUM;
 import static org.shop.Endpoint.GET_ALBUMS;
 import static org.shop.test.Tag.SMOKE_TEST;
+import static org.shop.utils.Protobuf.fromJson;
+import static org.shop.utils.Protobuf.toJson;
 import static org.shop.utils.TestDataGenerator.generateRandomAlphabeticString;
 import static org.shop.utils.TestDataGenerator.generateRandomFloat;
 
@@ -23,18 +26,19 @@ import static org.shop.utils.TestDataGenerator.generateRandomFloat;
 public class AlbumControllerTest extends BaseTest {
 
     @Test
+    @SneakyThrows
     void createNewAlbumTest(RequestSpecification httpRequest) {
         // Given
-        Album album = Album.builder()
-                .title(generateRandomAlphabeticString())
-                .artist(generateRandomAlphabeticString())
-                .price(generateRandomFloat())
+        Shop.Album album = Shop.Album.newBuilder()
+                .setTitle(generateRandomAlphabeticString())
+                .setArtist(generateRandomAlphabeticString())
+                .setPrice(generateRandomFloat())
                 .build();
 
         // When
         Response response = httpRequest
                 .contentType(JSON)
-                .body(album)
+                .body(toJson(album))
                 .post(CREATE_ALBUM);
 
         // Then
@@ -48,10 +52,11 @@ public class AlbumControllerTest extends BaseTest {
                 .body("price", Matchers.equalTo(album.getPrice()));
     }
 
+    @SneakyThrows
     @Test
     void getAlbumsTest(RequestSpecification httpRequest) {
         // Given
-        Album album = createNewAlbum(httpRequest);
+        Shop.Album album = createNewAlbum(httpRequest);
 
         // When
         Response response = httpRequest.get(GET_ALBUMS);
@@ -61,21 +66,24 @@ public class AlbumControllerTest extends BaseTest {
                 .log()
                 .ifValidationFails(BODY)
                 .statusCode(200)
-                .body("id", Matchers.hasItem(album.getId().toString()))
+                .body("id", Matchers.hasItem(album.getId()))
                 .body("title", Matchers.hasItem(album.getTitle()))
                 .body("artist", Matchers.hasItem(album.getArtist()))
                 .body("price", Matchers.hasItem(album.getPrice()));
     }
 
-    private static Album createNewAlbum(RequestSpecification httpRequest) {
+    @SneakyThrows
+    private static Shop.Album createNewAlbum(RequestSpecification httpRequest) {
         Response response = httpRequest
                 .contentType(JSON)
                 .body(
-                        Album.builder()
-                                .title(generateRandomAlphabeticString())
-                                .artist(generateRandomAlphabeticString())
-                                .price(generateRandomFloat())
-                                .build()
+                        toJson(
+                                Shop.Album.newBuilder()
+                                        .setTitle(generateRandomAlphabeticString())
+                                        .setArtist(generateRandomAlphabeticString())
+                                        .setPrice(generateRandomFloat())
+                                        .build()
+                        )
                 )
                 .post(CREATE_ALBUM);
 
@@ -84,7 +92,7 @@ public class AlbumControllerTest extends BaseTest {
                 .body()
                 .statusCode(201);
 
-        return response.as(Album.class);
+        return (Shop.Album) fromJson(response);
     }
 
 }
